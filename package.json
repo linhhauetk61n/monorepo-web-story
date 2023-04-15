@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "client": "yarn --cwd client",
-    "server": "yarn --cwd server"
+    "server": "yarn --cwd server",
+    "database": "docker-compose up -d postgres"
   },
   "dependencies": {
     "@nestjs/mapped-types": "*",
