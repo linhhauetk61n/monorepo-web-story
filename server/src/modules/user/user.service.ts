@@ -50,4 +50,24 @@ export class UserService {
       accessToken: this.JwtService.sign({ id: user.id, role: user.role }),
     };
   }
+
+  async getUserById(id: string) {
+    return this.userRepository.findOne({ where: { id } });
+  }
+
+  async getAllUser() {
+    return await this.userRepository.find({
+      select: [
+        'createdAt',
+        'updatedAt',
+        'deletedAt',
+        'id',
+        'username',
+        'email',
+        'displayName',
+        'avatarImg',
+        'role',
+      ],
+    });
+  }
 }
