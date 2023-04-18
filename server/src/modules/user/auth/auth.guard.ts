@@ -24,7 +24,11 @@ export class AuthGuard implements CanActivate {
 
     try {
       const decoded = await this.jwtService.verify(token);
+
       request.user = decoded;
+
+      //Save data decoded from jwt to request with custom key
+      // addRequestContext(request, { user: decoded });
       return true;
     } catch (error) {
       throw new UnauthorizedException('Invalid Token');
