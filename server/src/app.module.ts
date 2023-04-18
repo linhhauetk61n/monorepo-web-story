@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { UserModule } from './modules/user/user.module';
 import typeOrmConfig from './config/typeorm.config';
 import { JwtModule } from '@nestjs/jwt';
+import { StoryModule } from './modules/story/story.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { JwtModule } from '@nestjs/jwt';
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1d' },
     }),
+    StoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

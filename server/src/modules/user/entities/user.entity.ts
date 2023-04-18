@@ -7,9 +7,11 @@ import {
   BeforeInsert,
   BeforeUpdate,
   Entity,
+  OneToMany,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Exclude } from 'class-transformer';
+import { StoryEntity } from 'src/modules/story/entities/story.entity';
 
 @Entity('users')
 export class UserEntity extends AbstractEntity {
@@ -40,6 +42,9 @@ export class UserEntity extends AbstractEntity {
   @ApiProperty({ enum: UserRole })
   @Column({ type: 'enum', enum: UserRole, default: UserRole.POSTER })
   role: UserRole;
+
+  @OneToMany(() => StoryEntity, (story) => story.poster)
+  stories: StoryEntity[];
 
   @BeforeInsert()
   async setDisplayName() {
